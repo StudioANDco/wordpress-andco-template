@@ -11,6 +11,8 @@ Then you can do
 
 Go to http://my-project.lo/ and start hacking!
 
+This cookiecutter template is based on [Bedrock](https://roots.io/bedrock/docs/).
+
 # TODO
 
 - Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)

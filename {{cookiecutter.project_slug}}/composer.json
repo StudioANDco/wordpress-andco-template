@@ -15,17 +15,17 @@
         "johnpbloch/wordpress": "4.6.1",
         "oscarotero/env": "^1.0",
         "roots/wp-password-bcrypt": "1.0.0",
-        "wp-cli/wp-cli": "^0.22",
-        "psy/psysh": " ^0.6"
+        "wp-cli/wp-cli": "^0.25",
+        "psy/psysh": " ^0.7.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.5.1"
     },
     "extra": {
         "installer-paths": {
-            "web/app/mu-plugins/{$name}/": [ "type:wordpress-muplugin"],
-            "web/app/plugins/{$name}/": [ "type:wordpress-plugin"],
-            "web/app/themes/{$name}/": [ "type:wordpress-theme"]
+            "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "web/app/themes/{$name}/": ["type:wordpress-theme"]
         },
         "wordpress-install-dir": "web/wp"
     },

@@ -7,6 +7,12 @@ import subprocess
 def install_drifter():
     os.system('git init .')
     os.system('curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash')
+    os.system('cd virtualization/drifter && '
+              ' git remote set-url origin git@github.com:krtek4/drifter.git &&'
+              ' git fetch &&'
+              ' git checkout master &&'
+              ' git merge --ff-only origin/master ;'
+              ' cd ../..')
 
 
 def set_parameter(path, key, value):
@@ -32,7 +38,7 @@ def set_parameter(path, key, value):
 def patch_parameters(path):
     set_parameter(path, 'project_name', '{{ cookiecutter.project_slug }}')
     set_parameter(path, 'database_name', '{{ cookiecutter.project_slug }}')
-    set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace('_', '-') }}.lo')
+    set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     set_parameter(path, 'root_directory', '/vagrant/web')
 
 
@@ -50,10 +56,17 @@ def patch_playbook(path):
 
         patched_lines.append(line)
 
-    patched_lines.append('tasks:')
-    patched_lines.append('  - shell: cd {{ root_directory }} && composer.phar --quiet install')
-    patched_lines.append('  - shell: cd {{ root_directory }} && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command')
-    patched_lines.append('  - shell: cd {{ root_directory }} && ./vendor/bin/wp dotenv salts regenerate')
+    patched_lines.append('  tasks:' + "\n")
+    patched_lines.append('    - shell: cd /vagrant && composer.phar --quiet install' + "\n")
+    patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command' + "\n")
+    patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp dotenv salts regenerate' + "\n")
+    patched_lines.append('    - shell: curl "http://localhost/wp/wp-admin/install.php?step=2"'
+                         ' --data-urlencode "weblog_title={{ cookiecutter.project_slug.replace("_", "-") }}.lo"'
+                         ' --data-urlencode "user_name=admin"'
+                         ' --data-urlencode "admin_email=root@test.lo"'
+                         ' --data-urlencode "admin_password=admin"'
+                         ' --data-urlencode "admin_password2=admin"'
+                         ' --data-urlencode "pw_weak=1"' + "\n")
 
     with open(path, 'w') as f:
         f.write(''.join(patched_lines))
@@ -63,3 +76,6 @@ if __name__ == '__main__':
     install_drifter()
     patch_parameters('virtualization/parameters.yml')
     patch_playbook('virtualization/playbook.yml')
+    os.system('git update-ref -d HEAD')
+    os.system('git add .')
+    os.system('git commit -am "first blood"')
