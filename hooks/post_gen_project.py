@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+
+
+def install_drifter():
+    os.system('git init .')
+    os.system('curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash')
+
+
+def set_parameter(path, key, value):
+    patched_lines = []
+    parameter_exists = False
+
+    with open(path) as f:
+        lines = f.readlines()
+
+    for line in lines:
+        if line.startswith('{}:'.format(key)):
+            line = '{key}: "{value}"\n'.format(key=key, value=value)
+            parameter_exists = True
+        patched_lines.append(line)
+
+    if not parameter_exists:
+        patched_lines.append('{key}: "{value}"\n'.format(key=key, value=value))
+
+    with open(path, 'w') as f:
+        f.write(''.join(patched_lines))
+
+
+def patch_parameters(path):
+    set_parameter(path, 'project_name', '{{ cookiecutter.project_slug }}')
+    set_parameter(path, 'database_name', '{{ cookiecutter.project_slug }}')
+    set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace('_', '-') }}.lo')
+    set_parameter(path, 'root_directory', '/vagrant/web')
+
+
+def patch_playbook(path):
+    patched_lines = []
+
+    with open(path) as f:
+        lines = f.readlines()
+
+    for line in lines:
+        if 'role: php-fpm' in line or \
+           'role: composer' in line or \
+           'role: mysql' in line:
+            line = line.replace('# -', '-')
+
+        patched_lines.append(line)
+
+    patched_lines.append('tasks:')
+    patched_lines.append('  - shell: cd {{ root_directory }} && composer.phar --quiet install')
+    patched_lines.append('  - shell: cd {{ root_directory }} && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command')
+    patched_lines.append('  - shell: cd {{ root_directory }} && ./vendor/bin/wp dotenv salts regenerate')
+
+    with open(path, 'w') as f:
+        f.write(''.join(patched_lines))
+
+
+if __name__ == '__main__':
+    install_drifter()
+    patch_parameters('virtualization/parameters.yml')
+    patch_playbook('virtualization/playbook.yml')

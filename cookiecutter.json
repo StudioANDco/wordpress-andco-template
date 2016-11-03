@@ -1,0 +1,6 @@
+{
+    "project_slug": "my_project",
+    "_copy_without_render": [
+        "*.html"
+    ]
+}
