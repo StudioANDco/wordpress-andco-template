@@ -17,7 +17,7 @@ var src = {
  */
 gulp.task('watch', ['sass'], function() {
   browserSync.init({
-    proxy: 'assainimmob.lo'
+    proxy: 'andco.lo'
   });
 
   gulp.watch(src.scss, ['sass']);
