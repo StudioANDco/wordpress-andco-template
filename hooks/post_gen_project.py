@@ -39,7 +39,7 @@ def patch_parameters(path):
     set_parameter(path, 'project_name', '{{ cookiecutter.project_slug }}')
     set_parameter(path, 'database_name', '{{ cookiecutter.project_slug }}')
     set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
-    set_parameter(path, 'root_directory', '/vagrant/web')
+    set_parameter(path, 'root_directory', '/vagrant/public_html')
 
 
 def patch_playbook(path):

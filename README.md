@@ -15,5 +15,5 @@ This cookiecutter template is based on [Bedrock](https://roots.io/bedrock/docs/)
 
 # TODO
 
-- Set your site vhost document root to `/path/to/site/web/` (`/path/to/site/current/web/` if using deploys)
+- Set your site vhost document root to `/path/to/site/public_html/` (`/path/to/site/current/public_html/` if using deploys)
 - Deployment procedure
