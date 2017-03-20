@@ -60,6 +60,7 @@ def patch_playbook(path):
     patched_lines.append('    - shell: cd /vagrant && composer.phar --quiet install' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp dotenv salts regenerate' + "\n")
+    patched_lines.append('    - shell: cd /vagrant/web/app/themes/{{ cookiecutter.project_slug }} && npm install' + "\n")
     patched_lines.append('    - shell: curl "http://localhost/wp/wp-admin/install.php?step=2"'
                          ' --data-urlencode "weblog_title={{ cookiecutter.project_slug.replace("_", "-") }}.lo"'
                          ' --data-urlencode "user_name=admin"'
