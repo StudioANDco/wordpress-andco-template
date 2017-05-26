@@ -15,6 +15,9 @@ sql-dump-*.sql
 
 # Dotenv
 .env
+.env-*
+.ftpconfig
+dump.sql
 
 # Vendor (e.g. Composer)
 vendor/*
@@ -22,3 +25,4 @@ vendor/*
 
 # Node Package Manager
 node_modules
+/.vagrant/

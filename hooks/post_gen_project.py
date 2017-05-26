@@ -58,7 +58,8 @@ def patch_playbook(path):
 
     patched_lines.append('    - { role: nodejs }:' + "\n\n")
     patched_lines.append('  tasks:' + "\n")
-    patched_lines.append('    - shell: cd /vagrant && composer.phar --quiet install' + "\n")
+    patched_lines.append('    - apt: pkg=lftp state=latest' + "\n")
+    patched_lines.append('    - shell: cd /vagrant && composer.phar --no-dev --quiet install' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp dotenv salts regenerate' + "\n")
     patched_lines.append('    - shell: cd /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }} && npm install' + "\n")
