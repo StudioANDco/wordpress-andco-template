@@ -59,10 +59,14 @@ def patch_playbook(path):
     patched_lines.append('    - { role: nodejs }:' + "\n\n")
     patched_lines.append('  tasks:' + "\n")
     patched_lines.append('    - apt: pkg=lftp state=latest' + "\n")
+    patched_lines.append('    - apt: pkg=gettext state=latest' + "\n")
+    patched_lines.append('    - apt: pkg=php-gettext state=latest' + "\n")
     patched_lines.append('    - shell: cd /vagrant && composer.phar --no-dev --quiet install' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command' + "\n")
     patched_lines.append('    - shell: cd /vagrant && ./vendor/bin/wp dotenv salts regenerate' + "\n")
     patched_lines.append('    - shell: cd /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }} && npm install' + "\n")
+    patched_lines.append('    - shell: cd /home/vagrant && git clone git@github.com:wp-mirrors/wp-i18n-tools.git' + "\n")
+    patched_lines.append('    - shell: cd /home/vagrant/wp-i18n-tools && ln -s /vagrant/public_html/wp/wp-includes/pomo/' + "\n")
     patched_lines.append('    - shell: curl "http://localhost/wp/wp-admin/install.php?step=2"'
                          ' --data-urlencode "weblog_title={{ cookiecutter.project_slug.replace("_", "-") }}.lo"'
                          ' --data-urlencode "user_name=admin"'
