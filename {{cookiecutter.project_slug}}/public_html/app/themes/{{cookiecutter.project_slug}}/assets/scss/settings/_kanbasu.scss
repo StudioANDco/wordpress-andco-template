@@ -13,7 +13,7 @@ $namespace:                         '' !default;
  * Colors
  */
 
-$brand-color:                       #5a5d7e !default;
+$brand-color:                       #6ea644 !default;
 $alt-color-lighter:                 #eee !default;
 $alt-color-light:                   #999 !default;
 $alt-color:                         #777 !default;
@@ -25,7 +25,7 @@ $alt-color-darker:                  #333 !default;
  * Typography
  */
 
-$font-family-default:               'Open Sans', Futura, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$font-family-default:               'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
 $font-size-default:                 16px !default;
 $font-size-small:                   0.75rem !default;
@@ -50,6 +50,14 @@ $spacing-unit-small:                floor($spacing-unit-default / $ratio) !defau
 $spacing-unit-large:                floor($spacing-unit-default * $ratio) !default;
 $spacing-unit-huge:                 floor($spacing-unit-default * ($ratio * 2)) !default;
 
+$spacings:                          (
+    'tight' 0,
+    'tiny' $spacing-unit-tiny,
+    'small' $spacing-unit-small,
+    'large' $spacing-unit-large,
+    'huge' $spacing-unit-huge
+) !default;
+
 
 /**
  * Responsiveness
@@ -70,15 +78,15 @@ $mq-md:                             '(min-width: #{$screen-md-min}) and (max-wid
 $mq-lg:                             '(min-width: #{$screen-lg-min})' !default; // DEPRECATED
 
 $breakpoints-default:               (
-                                      'sm' '(min-width: #{$screen-sm-min})',
-                                      'md' '(min-width: #{$screen-md-min})',
-                                      'lg' '(min-width: #{$screen-lg-min})'
-                                    ) !default;
+    'sm' '(min-width: #{$screen-sm-min})',
+    'md' '(min-width: #{$screen-md-min})',
+    'lg' '(min-width: #{$screen-lg-min})'
+) !default;
 $breakpoints-desc:                  (
-                                      'xs' '(max-width: #{$screen-xs-max})',
-                                      'sm' '(max-width: #{$screen-sm-max})',
-                                      'md' '(max-width: #{$screen-md-max})'
-                                    ) !default;
+    'xs' '(max-width: #{$screen-xs-max})',
+    'sm' '(max-width: #{$screen-sm-max})',
+    'md' '(max-width: #{$screen-md-max})'
+) !default;
 
 
 /**
@@ -101,6 +109,7 @@ $border-radius-large:               6px !default;
 $btn-use-padding-ratio:             true !default;
 
 $btn-padding:                       $spacing-unit-small !default;
+$btn-font-size:                     inherit !default;
 $btn-color:                         inherit !default;
 $btn-border:                        1px solid transparent !default;
 $btn-bkg:                           transparent !default;
