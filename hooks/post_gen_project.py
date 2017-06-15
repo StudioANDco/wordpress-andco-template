@@ -56,7 +56,7 @@ def patch_playbook(path):
 
         patched_lines.append(line)
 
-    patched_lines.append('    - { role: nodejs }:' + "\n\n")
+    patched_lines.append('    - { role: nodejs }' + "\n\n")
     patched_lines.append('  tasks:' + "\n")
     patched_lines.append('    - apt: pkg=lftp state=latest' + "\n")
     patched_lines.append('    - apt: pkg=gettext state=latest' + "\n")
