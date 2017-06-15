@@ -2,7 +2,7 @@
 
 
 LCD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-RCD="/demo"
+RCD="/"
 
 cd $LCD
 
