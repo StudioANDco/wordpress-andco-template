@@ -12,3 +12,20 @@
 
 @import '../../node_modules/kanbasu/src/assets/scss/helpers/float';
 
+@import '../../node_modules/kanbasu/src/assets/scss/components/grid';
+@import '../../node_modules/kanbasu/src/assets/scss/components/widths';
+@import '../../node_modules/kanbasu/src/assets/scss/components/widths-responsive';
+
+.grid {
+    margin: 10px;
+}
+
+.grid__item {
+    border: 1px dashed black;
+    padding: 5px;
+    box-sizing: border-box;
+
+    img {
+        padding: 10px;
+    }
+}
