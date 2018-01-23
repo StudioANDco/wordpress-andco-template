@@ -6,7 +6,7 @@ add_action( 'init', 'create_taxonomies' );
 function create_taxonomies() {
 }
 
-define('PREFIX', 'andco');
+define('PREFIX', '{{ cookiecutter.project_slug }}');
 
 add_action('init', 'create_post_type');
 function create_post_type() {

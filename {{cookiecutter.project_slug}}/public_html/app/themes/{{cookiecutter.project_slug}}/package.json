@@ -1,9 +1,9 @@
 {
-  "name": "wp-andco",
-  "version": "1.0.1",
-  "description": "A bare WordPress theme ready to customize.",
+  "name": "wp-{{ cookiecutter.project_slug }}",
+  "version": "1.0.0",
+  "description": "Wordpress theme for {{ cookiecutter.project_name }}",
   "main": "index.php",
-  "author": "Gilles Crettenand",
+  "author": "Studio ANDco Sàrl",
   "license": "MIT",
   "repository": "krtek4/wordpress-andco-template",
   "scripts": {
@@ -18,7 +18,7 @@
     "gulp-rename": "^1",
     "gulp-svg-symbols": "^2",
     "gulp-autoprefixer": "^2.2.0",
-    "kanbasu": "^1.5.0",
-    "gulp-rename": "^1"
+    "kanbasu": "^2.0.0",
+    "run-sequence": "^2.2.1"
   }
 }

@@ -1,5 +1,7 @@
 {
+    "project_name": "My Project",
     "project_slug": "my_project",
+    "acf_key": "ACF Pro Key",
     "_copy_without_render": [
         "*.html"
     ]

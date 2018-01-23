@@ -26,10 +26,10 @@ var config = {
  */
 gulp.task('watch', ['sass'], function() {
   browserSync.init({
-    proxy: 'andco.lo'
+    proxy: '{{ cookiecutter.project_slug.replace("_", "-") }}.lo'
   });
 
-  gulp.watch(src.icons, ['icons:watch']);
+  gulp.watch(src.icons, ['icons']);
   gulp.watch(src.scss, ['sass']);
   gulp.watch(src.js, ['scripts']);
   gulp.watch(src.php).on('change', reload);
@@ -52,7 +52,7 @@ gulp.task('sass', function() {
  * Concat & uglify JavaScript
  */
 gulp.task('scripts', function() {
-  gulp.src(src.js)
+  return gulp.src(src.js)
     .pipe(concat('production.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('javascripts'))
@@ -62,13 +62,10 @@ gulp.task('scripts', function() {
 gulp.task('default', ['watch']);
 
 /** SVG icons */
-gulp.task('icons:watch', function() {
-    runSequence('icons', reload);
-});
-
 gulp.task('icons', function() {
     return gulp.src(src.icons)
         .pipe(svgSymbols({ templates: ['assets/icons/templates/icons.svg'] }))
         .pipe(rename('icons.svg'))
-        .pipe(gulp.dest('assets/images/'));
+        .pipe(gulp.dest('assets/images/'))
+        .pipe(reload({stream: true}));
 });

@@ -1,6 +1,6 @@
 /*
-Theme Name:   Andco
-Description:  Andco Theme
+Theme Name:   {{ cookiecutter.project_name }}
+Description:  {{ cookiecutter.project_name }} Theme
 Version:      1.0
-Author:       Gilles Crettenand
+Author:       Studio ANDco Sàrl
 */
