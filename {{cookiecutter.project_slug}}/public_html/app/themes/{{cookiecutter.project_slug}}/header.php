@@ -20,19 +20,13 @@
     <meta property="place:location:latitude" content="46.235885" />
     <meta property="place:location:longitude" content="7.3578723" />
 
-    <meta property="og:title" content="{{ cookiecutter.project_name }}" />
-    <meta property="og:image" content="<?= get_stylesheet_directory_uri(); ?>/assets/images/facebook.png" />
-    <meta property="og:url" content="https://{{ cookiecutter.project_slug.replace('_', '-') }}.ch/" />
-    <meta property="og:description" content="{{ cookiecutter.project_name }}" />
+    <meta itemprop="name" property="og:title" content="{{ cookiecutter.project_name }}" />
+    <meta itemprop="image" property="og:image" content="<?= get_stylesheet_directory_uri(); ?>/assets/images/facebook.png" />
+    <meta itemprop="url" property="og:url" content="https://{{ cookiecutter.project_slug.replace('_', '-') }}.ch/" />
+    <meta itemprop="description" property="og:description" content="{{ cookiecutter.project_name }}" />
 
-    <link rel="apple-touch-icon" href="<?= get_stylesheet_directory_uri(); ?>/assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="<?= get_stylesheet_directory_uri(); ?>/assets/favicon/ms-icon-144x144.png">
+    <link rel="manifest" href="<?= get_stylesheet_directory_uri(); ?>/assets/site.webmanifest">
+    <link rel="apple-touch-icon" href="<?= get_stylesheet_directory_uri(); ?>/assets/icon.png">
 
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="theme-color" content="#000000">

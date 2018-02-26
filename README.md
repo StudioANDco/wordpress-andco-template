@@ -1,9 +1,9 @@
-# Wordpress project template for AndCO
+# Wordpress project template for ANDco
 
 To create a new project using this template, do the following:
 
     pip install cookiecutter pip-tools
-    cookiecutter gh:krtek/wordpress-andco-template
+    cookiecutter gh:StudioANDco/wordpress-andco-template
 
 Then you can do
 
