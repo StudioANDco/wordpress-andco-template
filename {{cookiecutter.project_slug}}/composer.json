@@ -36,6 +36,7 @@
         "wpackagist-plugin/post-types-order": "^1.9.3.3",
         "wpackagist-plugin/html-editor-syntax-highlighter": "^2.1.0",
         "wpackagist-plugin/preserved-html-editor-markup-plus": "^1.5.3",
+        "wpackagist-plugin/wordpress-seo": "7.1",
         "advanced-custom-fields/advanced-custom-fields-pro": "*"
     },
     "require-dev": {
