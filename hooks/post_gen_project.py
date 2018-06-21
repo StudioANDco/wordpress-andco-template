@@ -114,4 +114,5 @@ if __name__ == '__main__':
     patch_vagrantfile('Vagrantfile')
     os.system('git update-ref -d HEAD')
     os.system('git add .')
+    os.system('pre-commit install')
     os.system('git commit -am "first blood"')
