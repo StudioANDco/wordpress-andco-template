@@ -5,7 +5,7 @@ To create a new project using this template, do the following:
     pip install cookiecutter pip-tools
     cookiecutter gh:StudioANDco/wordpress-andco-template
 
-Then you can do
+Then you can do (and then get a coffee)
 
     vagrant up
 
