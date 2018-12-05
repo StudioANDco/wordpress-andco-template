@@ -14,19 +14,19 @@ def set_parameter(path, key, value):
     parameter_exists = False
 
     with open(path) as f:
-        lines = f.readlines()
+        lines = [l.rstrip() for l in f.readlines()]
 
     for line in lines:
         if line.startswith('{}:'.format(key)):
-            line = '{key}: "{value}"\n'.format(key=key, value=value)
+            line = '{key}: "{value}"'.format(key=key, value=value)
             parameter_exists = True
         patched_lines.append(line)
 
     if not parameter_exists:
-        patched_lines.append('{key}: "{value}"\n'.format(key=key, value=value))
+        patched_lines.append('{key}: "{value}"'.format(key=key, value=value))
 
     with open(path, 'w') as f:
-        f.write(''.join(patched_lines))
+        f.write("\n".join(patched_lines))
 
 
 def patch_parameters(path):
@@ -40,7 +40,7 @@ def patch_playbook(path):
     patched_lines = []
 
     with open(path) as f:
-        lines = f.readlines()
+        lines = [l.rstrip() for l in f.readlines()]
 
     for line in lines:
         if 'role: php-fpm' in line or \
@@ -50,61 +50,62 @@ def patch_playbook(path):
 
         patched_lines.append(line)
 
-    patched_lines.append('    - { role: nodejs }' + "\n\n")
-    patched_lines.append('  tasks:' + "\n")
-    patched_lines.append('    - apt: pkg=lftp state=latest' + "\n")
-    patched_lines.append('      become: yes' + "\n")
-    patched_lines.append('    - apt: pkg=gettext state=latest' + "\n")
-    patched_lines.append('      become: yes' + "\n")
-    patched_lines.append('    - apt: pkg=php-gettext state=latest' + "\n")
-    patched_lines.append('      become: yes' + "\n")
-    patched_lines.append('    - command: /usr/local/bin/composer.phar --no-dev --quiet install' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /vagrant' + "\n")
-    patched_lines.append('    - command: ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /vagrant' + "\n")
-    patched_lines.append('    - command: ./vendor/bin/wp dotenv salts regenerate' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /vagrant' + "\n")
-    patched_lines.append('    - command: git clone https://github.com/wp-mirrors/wp-i18n-tools.git' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /home/vagrant' + "\n")
-    patched_lines.append('          creates: /home/vagrant/wp-i18n-tools' + "\n")
-    patched_lines.append('    - file:' + "\n")
-    patched_lines.append('          src: /vagrant/public_html/wp/wp-includes/pomo/' + "\n")
-    patched_lines.append('          dest: /home/vagrant/wp-i18n-tools/pomo' + "\n")
-    patched_lines.append('          state: link' + "\n")
+    patched_lines.append('    - { role: nodejs }')
+    patched_lines.append('')
+    patched_lines.append('  tasks:')
+    patched_lines.append('    - apt: pkg=lftp state=latest')
+    patched_lines.append('      become: yes')
+    patched_lines.append('    - apt: pkg=gettext state=latest')
+    patched_lines.append('      become: yes')
+    patched_lines.append('    - apt: pkg=php-gettext state=latest')
+    patched_lines.append('      become: yes')
+    patched_lines.append('    - command: /usr/local/bin/composer.phar --no-dev --quiet install')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /vagrant')
+    patched_lines.append('    - command: ./vendor/bin/wp package install aaemnnosttv/wp-cli-dotenv-command')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /vagrant')
+    patched_lines.append('    - command: ./vendor/bin/wp dotenv salts regenerate')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /vagrant')
+    patched_lines.append('    - command: git clone https://github.com/wp-mirrors/wp-i18n-tools.git')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /home/vagrant')
+    patched_lines.append('          creates: /home/vagrant/wp-i18n-tools')
+    patched_lines.append('    - file:')
+    patched_lines.append('          src: /vagrant/public_html/wp/wp-includes/pomo/')
+    patched_lines.append('          dest: /home/vagrant/wp-i18n-tools/pomo')
+    patched_lines.append('          state: link')
     patched_lines.append('    - shell: curl "http://localhost/wp/wp-admin/install.php?step=2"'
                          ' --data-urlencode "weblog_title={{ cookiecutter.project_slug.replace("_", "-") }}.lo"'
                          ' --data-urlencode "user_name=admin"'
                          ' --data-urlencode "admin_email=root@test.lo"'
                          ' --data-urlencode "admin_password=admin"'
                          ' --data-urlencode "admin_password2=admin"'
-                         ' --data-urlencode "pw_weak=1"' + "\n")
-    patched_lines.append('    - command: npm install' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}' + "\n")
-    patched_lines.append('    - command: node node_modules/kanbasu/scripts/scaffold.js assets/scss/' + "\n")
-    patched_lines.append('      args:' + "\n")
-    patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}' + "\n")
+                         ' --data-urlencode "pw_weak=1"')
+    patched_lines.append('    - command: npm install')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}')
+    patched_lines.append('    - command: node node_modules/kanbasu/scripts/scaffold.js assets/scss/')
+    patched_lines.append('      args:')
+    patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}')
 
     with open(path, 'w') as f:
-        f.write(''.join(patched_lines))
+        f.write("\n".join(patched_lines))
 
 
 def patch_vagrantfile(path):
     with open(path) as f:
-        lines = f.readlines()
+        lines = [l.rstrip() for l in f.readlines()]
 
-    lines.append('Vagrant.configure("2") do |config|' + "\n")
-    lines.append('    if Vagrant.has_plugin?("vagrant-bindfs")' + "\n")
-    lines.append('        config.bindfs.bind_folder "/vagrant", "/vagrant"' + "\n")
-    lines.append('    end' + "\n")
-    lines.append('end' + "\n")
+    lines.append('Vagrant.configure("2") do |config|')
+    lines.append('    if Vagrant.has_plugin?("vagrant-bindfs")')
+    lines.append('        config.bindfs.bind_folder "/vagrant", "/vagrant"')
+    lines.append('    end')
+    lines.append('end')
 
     with open(path, 'w') as f:
-        f.write(''.join(lines))
+        f.write("\n".join(lines))
 
 
 if __name__ == '__main__':
