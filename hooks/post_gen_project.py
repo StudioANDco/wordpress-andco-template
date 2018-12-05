@@ -67,7 +67,7 @@ def patch_playbook(path):
     patched_lines.append('    - command: ./vendor/bin/wp dotenv salts regenerate' + "\n")
     patched_lines.append('      args:' + "\n")
     patched_lines.append('          chdir: /vagrant' + "\n")
-    patched_lines.append('    - command: git clone git@github.com:wp-mirrors/wp-i18n-tools.git' + "\n")
+    patched_lines.append('    - command: git clone https://github.com/wp-mirrors/wp-i18n-tools.git' + "\n")
     patched_lines.append('      args:' + "\n")
     patched_lines.append('          chdir: /home/vagrant' + "\n")
     patched_lines.append('          creates: /home/vagrant/wp-i18n-tools' + "\n")
