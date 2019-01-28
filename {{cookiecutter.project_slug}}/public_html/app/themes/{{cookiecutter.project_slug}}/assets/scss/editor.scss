@@ -2,19 +2,19 @@
  * EDITOR STYLE
  */
 
-@import 'settings/kanbasu';
-@import '../../node_modules/kanbasu/src/assets/scss/tools/functions';
-@import '../../node_modules/kanbasu/src/assets/scss/tools/mixins';
-@import '../../node_modules/kanbasu/src/assets/scss/vendor/normalize';
-@import '../../node_modules/kanbasu/src/assets/scss/defaults/box-model';
-@import '../../node_modules/kanbasu/src/assets/scss/defaults/elements';
-@import '../../node_modules/kanbasu/src/assets/scss/defaults/typography';
+@import '../../node_modules/kanbasu/src/scss/settings/settings';
+@import 'settings/settings';
 
-@import '../../node_modules/kanbasu/src/assets/scss/helpers/float';
-
-@import '../../node_modules/kanbasu/src/assets/scss/components/grid';
-@import '../../node_modules/kanbasu/src/assets/scss/components/widths';
-@import '../../node_modules/kanbasu/src/assets/scss/components/widths-responsive';
+@import '../../node_modules/kanbasu/src/scss/tools/functions';
+@import '../../node_modules/kanbasu/src/scss/tools/mixins';
+@import '../../node_modules/kanbasu/src/scss/vendor/normalize';
+@import '../../node_modules/kanbasu/src/scss/defaults/box-model';
+@import '../../node_modules/kanbasu/src/scss/defaults/elements';
+@import '../../node_modules/kanbasu/src/scss/defaults/typography';
+@import '../../node_modules/kanbasu/src/scss/helpers/float';
+@import '../../node_modules/kanbasu/src/scss/components/grid';
+@import '../../node_modules/kanbasu/src/scss/components/widths';
+@import '../../node_modules/kanbasu/src/scss/components/widths-responsive';
 
 .grid {
     margin: 10px;

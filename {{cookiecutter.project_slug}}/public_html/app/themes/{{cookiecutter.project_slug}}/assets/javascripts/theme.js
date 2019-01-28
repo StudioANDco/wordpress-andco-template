@@ -1,3 +1,2 @@
-(function($) {
-    'use strict';
-})(jQuery);
+document.addEventListener("DOMContentLoaded", function() {
+});
