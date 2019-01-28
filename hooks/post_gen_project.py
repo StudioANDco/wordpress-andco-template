@@ -35,6 +35,7 @@ def patch_parameters(path):
     set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     set_parameter(path, 'root_directory', '/vagrant/public_html')
     set_parameter(path, 'nodejs_install_package_json', 'false')
+    set_parameter(path, 'php_version', '7.2')
 
 
 def patch_playbook(path):
@@ -60,8 +61,10 @@ def patch_playbook(path):
     patched_lines.append('      become: yes')
     patched_lines.append('    - apt: pkg=php-gettext state=latest')
     patched_lines.append('      become: yes')
+    patched_lines.append('    - apt: pkg=php7.2-xml state=latest')
+    patched_lines.append('      become: yes')
     patched_lines.append('    - blockinfile:')
-    patched_lines.append('          path: /etc/nginx/sites-available/{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
+    patched_lines.append('          dest: /etc/nginx/sites-available/{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     patched_lines.append('          insertafter: "index index.php;"')
     patched_lines.append('          content: |')
     patched_lines.append('            location / {')
