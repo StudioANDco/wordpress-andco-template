@@ -14,7 +14,7 @@ module.exports = {
         extensions: ['.js'],
     },
     entry: {
-        common: path.resolve(__dirname, 'assets/scripts/theme.js'),
+        theme: path.resolve(__dirname, 'assets/javascripts/theme.js'),
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -89,6 +89,7 @@ module.exports = {
         public: '{{ cookiecutter.project_slug.replace("_", "-") }}.lo:3000',
         host: '0.0.0.0',
         port: 3000,
+        publicPath: '/app/themes/{{ cookiecutter.project_slug.replace("_", "-") }}/dist/',
         compress: true,
         // Polling is required inside Vagrant boxes
         watchOptions: {

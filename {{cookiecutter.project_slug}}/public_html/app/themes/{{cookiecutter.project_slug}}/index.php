@@ -5,7 +5,7 @@
         <h1>Samples</h1>
     </header>
 <?php
-$query = informations();
+$query = samples();
 if ($query->have_posts()) {
     while($query->have_posts()) {
         $query->the_post();
