@@ -34,6 +34,8 @@ def patch_parameters(path):
     set_parameter(path, 'database_name', '{{ cookiecutter.project_slug }}')
     set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     set_parameter(path, 'root_directory', '/vagrant/public_html')
+    set_parameter(path, 'nodejs_package_json_author', 'Studio andco Sàrl')
+    set_parameter(path, 'nodejs_package_json_path', '/vagrant/public_html/app/themes/{{ cookiecutter.project_slug.replace("_", "-") }')
 
 
 def patch_playbook(path):
@@ -50,7 +52,7 @@ def patch_playbook(path):
 
         patched_lines.append(line)
 
-    patched_lines.append('    - { role: nodejs }')
+    patched_lines.append('    - { role: webpack }')
     patched_lines.append('')
     patched_lines.append('  tasks:')
     patched_lines.append('    - apt: pkg=lftp state=latest')
