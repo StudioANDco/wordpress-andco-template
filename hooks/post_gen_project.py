@@ -35,6 +35,7 @@ def patch_parameters(path):
     set_parameter(path, 'hostname', '{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     set_parameter(path, 'root_directory', '/vagrant/public_html')
     set_parameter(path, 'nodejs_install_package_json', 'false')
+    set_parameter(path, 'webpack_create_config', 'false')
     set_parameter(path, 'php_version', '7.2')
 
 
