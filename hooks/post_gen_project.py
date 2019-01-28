@@ -126,6 +126,7 @@ if __name__ == '__main__':
     patch_playbook('virtualization/playbook.yml')
     patch_vagrantfile('Vagrantfile')
     os.system('git update-ref -d HEAD')
+    os.system('cd virtualization/drifter; git checkout stretch-php7; cd ../..')
     os.system('git add .')
     os.system('pre-commit install')
     os.system('git commit -am "first blood"')
