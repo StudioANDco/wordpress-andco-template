@@ -64,6 +64,8 @@ def patch_playbook(path):
     patched_lines.append('      become: yes')
     patched_lines.append('    - apt: pkg=php7.2-xml state=latest')
     patched_lines.append('      become: yes')
+    patched_lines.append('    - apt: pkg=php7.2-mbstring state=latest')
+    patched_lines.append('      become: yes')
     patched_lines.append('    - blockinfile:')
     patched_lines.append('          dest: /etc/nginx/sites-available/{{ cookiecutter.project_slug.replace("_", "-") }}.lo')
     patched_lines.append('          insertafter: "index index.php;"')
@@ -81,10 +83,6 @@ def patch_playbook(path):
     patched_lines.append('    - command: ./vendor/bin/wp dotenv salts regenerate')
     patched_lines.append('      args:')
     patched_lines.append('          chdir: /vagrant')
-    patched_lines.append('    - file:')
-    patched_lines.append('          src: /vagrant/public_html/wp/wp-includes/pomo/')
-    patched_lines.append('          dest: /home/vagrant/wp-i18n-tools/pomo')
-    patched_lines.append('          state: link')
     patched_lines.append('    - shell: curl "http://localhost/wp/wp-admin/install.php?step=2"'
                          ' --data-urlencode "weblog_title={{ cookiecutter.project_slug.replace("_", "-") }}.lo"'
                          ' --data-urlencode "user_name=admin"'
@@ -92,10 +90,7 @@ def patch_playbook(path):
                          ' --data-urlencode "admin_password=admin"'
                          ' --data-urlencode "admin_password2=admin"'
                          ' --data-urlencode "pw_weak=1"')
-    patched_lines.append('    - command: npm install')
-    patched_lines.append('      args:')
-    patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}')
-    patched_lines.append('    - command: node node_modules/kanbasu/scripts/scaffold.js assets/scss/')
+    patched_lines.append('    - command: yarn')
     patched_lines.append('      args:')
     patched_lines.append('          chdir: /vagrant/public_html/app/themes/{{ cookiecutter.project_slug }}')
 
